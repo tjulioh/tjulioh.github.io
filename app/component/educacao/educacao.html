@@ -6,10 +6,9 @@
     <p class="mb-0">Este projeto está em desenvolvimento, se possível reportar qualquer sugestão para melhor evolução do mesmo.</p>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
-
 <div ng-controller="educacao">
     <button type="button" ng-click="getItems()">GET</button>
     <ul>
-       <li ng-repeat="item in items"> item.firstName </li>
+       <li ng-repeat="item in items"> {{item}} </li>
     </ul>
 </div>
