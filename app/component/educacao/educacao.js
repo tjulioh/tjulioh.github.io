@@ -6,7 +6,7 @@ app.controller('educacao', function($scope, $http) {
             $http({
                 method: 'GET',
                 url: 'http://ec2-54-233-198-13.sa-east-1.compute.amazonaws.com:8080/api/'+$scope.api+'/',
-                headers: {'authorization':'Basic ZEdwMWJHbHZhQzFoWkcxcGJn'}
+                headers: {'authorization':'Basic YWRtaW46ZEdwMWJHbHZhQzFoWkcxcGJn'}
             })
             .then(
                 function successCallback(resultado) {
