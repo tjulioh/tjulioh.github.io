@@ -1,12 +1,12 @@
-app.controller('educacao', function($scope, $http) {                        
+app.controller('EducacaoController', function($scope, $http) {                        
     $scope.api = 'pais'
     $scope.items = []
     $scope.getItem = () => {                
         if($scope.api){            
             $http({
                 method: 'GET',
-                url: 'https://api.tjulioh.dev/'+$scope.api+'/',
-                headers: {'authorization':'Basic YWRtaW46ZEdwMWJHbHZhQzFoWkcxcGJn'}
+                url: 'https://api.tjulioh.dev:8080/'+$scope.api+'/',
+                headers: {'Authorization':'Basic YWRtaW46ZEdwMWJHbHZhQzFoWkcxcGJn'}
             })
             .then(
                 function successCallback(resultado) {
