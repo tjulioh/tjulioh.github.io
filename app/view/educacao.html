@@ -1,13 +1,16 @@
 <div ng-controller="EducacaoController">
-    <div class="alert alert-warning alert-dismissible fade show" role="alert" ng-if=items.length>
-       <h4 class="alert-heading">                    
-        <img src="https://icons.getbootstrap.com/assets/icons/gear.svg" class="img-fluid" alt="Icone" width="18" height="18" style="margin-bottom:3px"> Em Construção!
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" ng-if=resultado.length>
+       <h4 class="alert-heading">
+           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-gear" viewBox="0 0 18 18">
+               <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+               <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+           </svg> Em Construção!
        </h4>
        <hr>
        <p class="mb-0">Este projeto está em desenvolvimento, se possível reportar qualquer sugestão para melhor evolução do mesmo.</p>
        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fecha"></button>
     </div>        
-    <div class="alert alert-danger alert-dismissible fade show" role="alert" ng-if=!items.length>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" ng-if=!resultado.length>
        <h4 class="alert-heading">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cloud-slash" viewBox="0 0 18 18">
             <path fill-rule="evenodd" d="M3.112 5.112a3.125 3.125 0 0 0-.17.613C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13H11l-1-1H3.781C2.231 12 1 10.785 1 9.318c0-1.365 1.064-2.513 2.46-2.666l.446-.05v-.447c0-.075.006-.152.018-.231l-.812-.812zm2.55-1.45-.725-.725A5.512 5.512 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773a3.2 3.2 0 0 1-1.516 2.711l-.733-.733C14.498 11.378 15 10.626 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3c-.875 0-1.678.26-2.339.661z"/>
@@ -18,22 +21,45 @@
        <p class="mb-0">O servidor <a class="link-primary" >https://api.tjulioh.dev</a> está indisponivel no momento, favor tentar novamente mais tarde.</p>
        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fecha"></button>
     </div>
-    <div class="btn-group">
-       <button type="button" class="btn btn-primary" ng-click="getItem()">Atualizar ({{api}})</button>
-       <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"></button>
-       <ul class="dropdown-menu">
-          <li><a class="dropdown-item" ng-click="api='pais';getItem()">Pais</a></li>
-          <li><a class="dropdown-item" ng-click="api='estado';getItem()">Estado</a></li>
-          <li><a class="dropdown-item" ng-click="api='cidade';getItem()">Cidade</a></li>
-          <li>
-             <hr class="dropdown-divider">
-          </li>
-          <li><a class="dropdown-item" ng-click="api='autenticacao';getItem()">Autenticação</a></li>
-       </ul>
-    </div>
+    <form>
+        <fieldset>
+            <div class="row g-2">
+                <div class="col-md-3"><!-- style="margin-right: -15px;">-->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary" ng-click="consultar()">Atualizar ({{api}})</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" ng-click="api='pais';getItem()">Pais</a></li>
+                            <li><a class="dropdown-item" ng-click="api='estado';getItem()">Estado</a></li>
+                            <li><a class="dropdown-item" ng-click="api='cidade';getItem()">Cidade</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" ng-click="api='autenticacao';getItem()">Usuário</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <input type="user" class="form-control" id="usuario" placeholder="admin" value="educaexemplo" style="height: calc(.5rem + 2px)" disabled>
+                        <label for="usuario" style="padding: 0.5rem .75rem">Usuario</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="senha" placeholder="admin" value="********" style="height: calc(.5rem + 2px)" disabled>
+                        <label for="senha" style="padding: 0.5rem .75rem">Senha</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary" disabled>Entrar</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
     <br>
     <br>
-    <div class="accordion" id="lista" ng-repeat="item in items">
+    <div class="accordion" id="lista" ng-repeat="item in resultado">
        <div class="accordion-item">
           <h2 class="accordion-header" id="{{item.id}}">
              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c{{item.id}}" aria-expanded="false" aria-controls="c{{item.id}}">
@@ -47,4 +73,4 @@
           </div>
        </div>
     </div>
-</div>    
+</div>

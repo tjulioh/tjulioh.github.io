@@ -1,0 +1,7 @@
+HELP.md
+.vscode/
+.idea/
+*.iws
+*.iml
+*.xml
+*.ipr
