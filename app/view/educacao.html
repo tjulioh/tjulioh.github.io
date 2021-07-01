@@ -1,4 +1,17 @@
 <div ng-controller="EducacaoController">
+    <main>
+        <br>
+        <h1>Projeto Educação</h1>
+        <br>
+        <p class="fs-5 col">Aplicação com o objetivo educacional, explorar as possibilidades do maven/spring.</p>
+        <br>
+        <div class="row g-2">
+            <div class="col">
+                <p>Se estiver com interesse em ver como está estruturado o projeto, veja a <a href="https://api.tjulioh.dev/documentacao" target="_blank" rel="noopener noreferrer" class="link">documentação</a> ou a pagina no <a href="https://github.com/tjulioh/educacao" target="_blank" rel="noopener noreferrer" class="link">GitHub</a>.</p>
+            </div>
+        </div>
+        <br>
+    </main>
     <div class="alert alert-warning alert-dismissible fade show" role="alert" ng-if=resultado.length>
        <h4 class="alert-heading">
            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-gear" viewBox="0 0 18 18">
@@ -9,50 +22,50 @@
        <hr>
        <p class="mb-0">Este projeto está em desenvolvimento, se possível reportar qualquer sugestão para melhor evolução do mesmo.</p>
        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fecha"></button>
-    </div>        
+    </div>
     <div class="alert alert-danger alert-dismissible fade show" role="alert" ng-if=!resultado.length>
        <h4 class="alert-heading">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cloud-slash" viewBox="0 0 18 18">
             <path fill-rule="evenodd" d="M3.112 5.112a3.125 3.125 0 0 0-.17.613C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13H11l-1-1H3.781C2.231 12 1 10.785 1 9.318c0-1.365 1.064-2.513 2.46-2.666l.446-.05v-.447c0-.075.006-.152.018-.231l-.812-.812zm2.55-1.45-.725-.725A5.512 5.512 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773a3.2 3.2 0 0 1-1.516 2.711l-.733-.733C14.498 11.378 15 10.626 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3c-.875 0-1.678.26-2.339.661z"/>
             <path d="m13.646 14.354-12-12 .708-.708 12 12-.707.707z"/>
           </svg> Ocorreu um erro!
-       </h4>       
-       <hr>       
+       </h4>
+       <hr>
        <p class="mb-0">O servidor <a class="link-primary" >https://api.tjulioh.dev</a> está indisponivel no momento, favor tentar novamente mais tarde.</p>
        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fecha"></button>
     </div>
     <form>
         <fieldset>
-            <div class="row g-2">
-                <div class="col-md-3"><!-- style="margin-right: -15px;">-->
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-primary" ng-click="consultar()">Atualizar ({{api}})</button>
-                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"></button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" ng-click="api='pais';getItem()">Pais</a></li>
-                            <li><a class="dropdown-item" ng-click="api='estado';getItem()">Estado</a></li>
-                            <li><a class="dropdown-item" ng-click="api='cidade';getItem()">Cidade</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" ng-click="api='autenticacao';getItem()">Usuário</a></li>
-                        </ul>
+            <div class="row">
+                <div class="d-grid gap-2 d-md-flex">
+                    <div class="col-md-3">
+                        <div class="form-floating">
+                            <input type="user" class="form-control" id="usuario" placeholder="admin" value="educaexemplo" style="height: calc(.5rem + 2px)" disabled>
+                            <label for="usuario" style="padding: 0.5rem .75rem">Usuario</label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-floating">
-                        <input type="user" class="form-control" id="usuario" placeholder="admin" value="educaexemplo" style="height: calc(.5rem + 2px)" disabled>
-                        <label for="usuario" style="padding: 0.5rem .75rem">Usuario</label>
+                    <div class="col-md-3">
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="senha" placeholder="admin" value="********" style="height: calc(.5rem + 2px)" disabled>
+                            <label for="senha" style="padding: 0.5rem .75rem">Senha</label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-floating">
-                        <input type="password" class="form-control" id="senha" placeholder="admin" value="********" style="height: calc(.5rem + 2px)" disabled>
-                        <label for="senha" style="padding: 0.5rem .75rem">Senha</label>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn btn-primary" disabled>Entrar</button>
+                        <div class="btn-group justify-content-end">
+                            <button type="button" class="btn btn-primary" ng-click="consultar()">Atualizar ({{endereco}})</button>
+                            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 50px;"></button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" ng-click="api='pais';getItem()">Pais</a></li>
+                                <li><a class="dropdown-item" ng-click="api='estado';getItem()">Estado</a></li>
+                                <li><a class="dropdown-item" ng-click="api='cidade';getItem()">Cidade</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" ng-click="api='autenticacao';getItem()">Usuário</a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <button type="submit" class="btn btn-primary" disabled>Entrar</button>
                 </div>
             </div>
         </fieldset>
