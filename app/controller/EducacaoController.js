@@ -5,28 +5,25 @@ app.controller('EducacaoController', function($scope, $http, $document) {
 
     $scope.autenticar = function(){
         if($scope.autorizacao == null){
-            if(window.localStorage.getItem('autorizacao') != null){
-                $scope.autorizacao = window.localStorage.getItem('autorizacao')
-            }else{
-                $http({
-                    method: 'GET',
-                    url: 'https://api.tjulioh.dev/oauth/token?grant_type=password&username=' + $scope.acesso.usuario + '&password=' + $scope.acesso.senha,
-                    headers: {
-                        'Access-Control-Allow-Origin':'*',
-                        'Content-Type': 'application/json',
-                        'Authorization':'Basic ' + btoa('educacao:' + btoa('tjulioh-educacao'))
-                    }
-                }).then(
-                    function successCallback(resultado) {
-                        $scope.autorizacao = resultado.data.access_token;
-                        window.localStorage.setItem('autorizacao', $scope.autorizacao);
-                    },
-                    function errorCallback(resultado) {
-                        $scope.resultado = []
-                        console.log(resultado)
-                    }
-                );
-            }
+            $http({
+                method: 'GET',
+                url: 'https://api.tjulioh.dev/oauth/token?grant_type=password&username=' + $scope.acesso.usuario + '&password=' + $scope.acesso.senha,
+                headers: {
+                    'Access-Control-Allow-Origin':'*',
+                    'Content-Type': 'application/json',
+                    'Authorization':'Basic ' + btoa('educacao:' + btoa('tjulioh-educacao'))
+                }
+            }).then(
+                function successCallback(resultado) {
+                    window.localStorage.setItem('acesso_autorizacao', resultado.data.access_token);
+                    window.localStorage.setItem('acesso_atualizacao', resultado.data.refresh_token);
+                    $scope.autorizacao = resultado.data.access_token;
+                },
+                function errorCallback(resultado) {
+                    $scope.resultado = []
+                    console.log(resultado)
+                }
+            );
         }
     }
 
