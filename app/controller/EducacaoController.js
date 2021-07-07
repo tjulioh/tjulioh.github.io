@@ -59,4 +59,5 @@ app.controller('EducacaoController', function($scope, $http, $document) {
         }
     }
 
+    $scope.consultar()
 });
