@@ -1,36 +1,49 @@
 app.controller('EducacaoController', function($scope, $http, $document) {
-    $scope.autorizacao = ""
     $scope.endereco = 'pais'
     $scope.resultado = []
-    $scope.autorizar = function(){
-        $http({
-            method: 'GET',
-            url: 'https://api.tjulioh.dev/oauth/token?grant_type=password&username=' + $document[0].getElementById('usuario').placeholder + '&password=' + $document[0].getElementById('senha').placeholder,
-            headers: {'Authorization':'Basic ' + btoa('client-id:secret-id')}
-        })
-            .then(
-                function successCallback(resultado) {
-                    console.log(resultado.data)
-                    $scope.autorizacao = resultado.data['access_token'];
-                },
-                function errorCallback(resultado) {
-                    $scope.resultado = []
-                    console.log(resultado)
-                }
-            );
+    $scope.acesso = {usuario:$document[0].getElementById('usuario').placeholder,senha:$document[0].getElementById('senha').placeholder}
+
+    $scope.autenticar = function(){
+        if($scope.autorizacao == null){
+            if(window.localStorage.getItem('autorizacao') != null){
+                $scope.autorizacao = window.localStorage.getItem('autorizacao')
+            }else{
+                $http({
+                    method: 'GET',
+                    url: 'https://api.tjulioh.dev/oauth/token?grant_type=password&username=' + $scope.acesso.usuario + '&password=' + $scope.acesso.senha,
+                    headers: {
+                        'Access-Control-Allow-Origin':'*',
+                        'Content-Type': 'application/json',
+                        'Authorization':'Basic ' + btoa('educacao:' + btoa('tjulioh-educacao'))
+                    }
+                }).then(
+                    function successCallback(resultado) {
+                        $scope.autorizacao = resultado.data.access_token;
+                        window.localStorage.setItem('autorizacao', $scope.autorizacao);
+                    },
+                    function errorCallback(resultado) {
+                        $scope.resultado = []
+                        console.log(resultado)
+                    }
+                );
+            }
+        }
     }
+
     $scope.consultar = function() {
-        $scope.autorizar();
+        $scope.autenticar();
         if ($scope.endereco) {
             if ($scope.autorizacao) {
                 $http({
                     method: 'GET',
                     url: 'https://api.tjulioh.dev/' + $scope.endereco + '/',
-                    headers: {'Authorization': 'Basic ' + $scope.autorizacao}
-                })
-                    .then(
+                    headers: {
+                        'Access-Control-Allow-Origin':'*',
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + $scope.autorizacao
+                    }
+                }).then(
                         function successCallback(resultado) {
-                            console.log(resultado.data)
                             $scope.resultado = resultado.data;
                         },
                         function errorCallback(resultado) {
@@ -45,5 +58,5 @@ app.controller('EducacaoController', function($scope, $http, $document) {
             console.log("Sem Endereço")
         }
     }
-    $scope.consultar();
+
 });
