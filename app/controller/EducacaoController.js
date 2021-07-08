@@ -32,6 +32,7 @@ app.controller('EducacaoController', function($scope, $http, $document) {
         $scope.autorizacao.then(function(resultado) {
             console.log("resultado:" + resultado)
         });
+        console.log("autorizacao:" + $scope.autorizacao)
         if ($scope.endereco) {
             if ($scope.autorizacao) {
                 $http({
