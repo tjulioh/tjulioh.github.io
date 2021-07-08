@@ -89,7 +89,9 @@
    <script>
       window.onload = function() {
          if(/(#!\/)(?!.)/g.test(window.location.href)){
-            new bootstrap.Tooltip(document.getElementById('dica')).show()
+            dica = new bootstrap.Tooltip(document.getElementById('dica'))
+            dica.show()
+            dica.update()
          }
       };
       window.onhashchange = function() {
