@@ -28,8 +28,9 @@ app.controller('EducacaoController', function($scope, $http, $document) {
     }
 
     $scope.consultar = function () {
-        $scope.autorizacao = $scope.autenticar()
-        $scope.autorizacao.then(function(resultado) {
+        autenticacao = $scope.autenticar()
+        autenticacao.then(function successCallback(resultado) {
+            $scope.autorizacao = resultado
             console.log("resultado:" + resultado)
         });
         console.log("autorizacao:" + $scope.autorizacao)
