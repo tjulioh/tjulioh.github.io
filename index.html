@@ -53,7 +53,7 @@
                   </h3>
                   <p>Veja alguns projetos a qual destino meu tempo tanto para adiquirir conhecimento quanto para uso particular.</p>
                   <ul class="icon-list">
-                     <li><a href="#!educacao" onclick="(function(){window.scrollTo(0, 0);})()">Educação</a></li>
+                     <li><a href="#!educacao" onclick="(function(){window.scrollTo(0, 0)})()" id="dica" data-bs-placement="top" title="Clique aqui para ver um projeto exemplo!">Educação</a></li>
                      <li class="text-muted">Licitação</li>
                      <li><a href="https://github.com/tjulioh/tjulioh.github.io" rel="noopener" target="_blank">Este Portfólio</a></li>
                   </ul>
@@ -85,5 +85,15 @@
    </body>
    <script type="text/javascript" src="app/app.js"></script>
    <script type="text/javascript" src="app/controller/EducacaoController.js"></script>
-   <script type="text/javascript" src="app/controller/InicioController.js"></script>  
+   <script type="text/javascript" src="app/controller/InicioController.js"></script>
+   <script>
+      window.onload = function() {
+         if(/(#!\/)(?!.)/g.test(window.location.href)){
+            new bootstrap.Tooltip(document.getElementById('dica')).show()
+         }
+      };
+      window.onhashchange = function() {
+         bootstrap.Tooltip.getInstance(document.getElementById('dica')).hide()
+      }
+   </script>
 </html>
