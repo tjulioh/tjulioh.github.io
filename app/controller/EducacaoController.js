@@ -2,7 +2,10 @@ app.controller('EducacaoController', function($scope, $http, $document) {
     $scope.autorizacao = null
     $scope.endereco = 'pais'
     $scope.resultado = []
-    $scope.acesso = {usuario:$document[0].getElementById('usuario').placeholder,senha:$document[0].getElementById('senha').placeholder}
+    $scope.acesso = {
+        usuario:$document[0].getElementById('usuario').placeholder,
+        senha:$document[0].getElementById('senha').placeholder
+    }
 
     autenticar = function () {
         return $http({
