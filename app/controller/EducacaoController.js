@@ -30,7 +30,7 @@ app.controller('EducacaoController', function($scope, $http, $document) {
     $scope.consultar = function () {
         $scope.autorizacao = $scope.autenticar()
         $scope.autorizacao.then(function(resultado) {
-            console.log(resultado)
+            console.log("resultado:" + resultado)
         });
         if ($scope.endereco) {
             if ($scope.autorizacao) {
