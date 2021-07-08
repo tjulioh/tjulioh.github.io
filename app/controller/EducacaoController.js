@@ -27,8 +27,8 @@ app.controller('EducacaoController', function($scope, $http, $document) {
         )
     }
 
-    $scope.consultar = function () {
-        let autenticacao = $scope.autenticar()
+    $scope.consultar = async function () {
+        let autenticacao = await $scope.autenticar()
         autenticacao.then(function successCallback(resultado) {
             $scope.autorizacao = resultado
             console.log("resultado:" + resultado)
