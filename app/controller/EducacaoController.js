@@ -4,7 +4,7 @@ app.controller('EducacaoController', function($scope, $http, $document) {
     $scope.resultado = []
     $scope.acesso = {usuario:$document[0].getElementById('usuario').placeholder,senha:$document[0].getElementById('senha').placeholder}
 
-    $scope.autenticar = function () {
+    autenticar = function () {
         return $http({
             method: 'GET',
             url: 'https://api.tjulioh.dev/oauth/token?grant_type=password&username=' + $scope.acesso.usuario + '&password=' + $scope.acesso.senha,
@@ -15,25 +15,18 @@ app.controller('EducacaoController', function($scope, $http, $document) {
             }
         }).then(
             function successCallback(resultado) {
-                console.log(resultado)
                 $scope.autorizacao = resultado.data.access_token;
-                return resultado.data.access_token;
             },
             function errorCallback(resultado) {
+                $scope.autorizacao = null
                 $scope.resultado = []
                 console.log(resultado)
-                return null
             }
         )
     }
 
     $scope.consultar = async function () {
-        let autenticacao = await $scope.autenticar()
-        autenticacao.then(function successCallback(resultado) {
-            $scope.autorizacao = resultado
-            console.log("resultado:" + resultado)
-        });
-        console.log("autorizacao:" + $scope.autorizacao)
+        await autenticar()
         if ($scope.endereco) {
             if ($scope.autorizacao) {
                 $http({
