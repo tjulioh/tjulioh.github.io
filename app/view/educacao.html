@@ -37,22 +37,22 @@
     <form>
         <fieldset>
             <div class="row">
-                <div class="d-grid gap-2 d-md-flex">
-                    <div class="col-md-3">
+                <div class="d-grid d-md-flex">
+                    <div class="col-md-3" style="margin-right: 5px;">
                         <div class="form-floating">
                             <input type="user" class="form-control" id="usuario" placeholder="admin" value="educaexemplo" style="height: calc(.5rem + 2px)" disabled>
                             <label for="usuario" style="padding: 0.5rem .75rem">Usuario</label>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3" style="margin-right: 5px;">
                         <div class="form-floating">
                             <input type="password" class="form-control" id="senha" placeholder="admin" value="********" style="height: calc(.5rem + 2px)" disabled>
                             <label for="senha" style="padding: 0.5rem .75rem">Senha</label>
                         </div>
                     </div>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button type="submit" class="btn btn-primary" disabled>Entrar</button>
-                        <div class="btn-group justify-content-end">
+                    <div class="d-grid d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn btn-primary" disabled style="margin-right: 5px;">Entrar</button>
+                        <div class="btn-group justify-content-end" style="margin-right: 5px;">
                             <button type="button" class="btn btn-primary" ng-click="consultar()">Atualizar ({{endereco}})</button>
                             <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="max-width: 50px;"></button>
                             <ul class="dropdown-menu">
