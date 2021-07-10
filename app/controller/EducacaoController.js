@@ -1,10 +1,10 @@
 app.controller('EducacaoController', function($scope, $http, $document) {
-    $scope.autorizacao = null
     $scope.endereco = 'pais'
     $scope.resultado = []
     $scope.acesso = {
         usuario:$document[0].getElementById('usuario').placeholder,
-        senha:$document[0].getElementById('senha').placeholder
+        senha:$document[0].getElementById('senha').placeholder,
+        autorizacao:false
     }
 
     autenticar = function () {
@@ -18,10 +18,10 @@ app.controller('EducacaoController', function($scope, $http, $document) {
             }
         }).then(
             function successCallback(resultado) {
-                $scope.autorizacao = resultado.data.access_token;
+                $scope.acesso.autorizacao = resultado.data.access_token;
             },
             function errorCallback(resultado) {
-                $scope.autorizacao = null
+                $scope.acesso.autorizacao = false
                 $scope.resultado = []
                 console.log(resultado)
             }
@@ -31,21 +31,20 @@ app.controller('EducacaoController', function($scope, $http, $document) {
     $scope.consultar = async function () {
         await autenticar()
         if ($scope.endereco) {
-            if ($scope.autorizacao) {
+            if ($scope.acesso.autorizacao) {
                 $http({
                     method: 'GET',
                     url: 'https://api.tjulioh.dev/' + $scope.endereco + '/',
                     headers: {
                         'Access-Control-Allow-Origin': '*',
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + $scope.autorizacao
+                        'Authorization': 'Bearer ' + $scope.acesso.autorizacao
                     }
                 }).then(
                     function successCallback(resultado) {
                         $scope.resultado = resultado.data;
                     },
                     function errorCallback(resultado) {
-                        $scope.autorizacao = null
                         $scope.resultado = []
                         console.log(resultado)
                     }
