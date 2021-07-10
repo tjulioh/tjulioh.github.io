@@ -10,7 +10,7 @@ app.controller('EducacaoController', function($scope, $http, $document) {
     autenticar = function () {
         return $http({
             method: 'GET',
-            url: 'https://api.tjulioh.dev/oauth/token?grant_type=password&username=' + $scope.acesso.usuario + '&password=' + $scope.acesso.senha,
+            url: 'https://api.tjulioh.dev/autenticacao?grant_type=password&username=' + $scope.acesso.usuario + '&password=' + $scope.acesso.senha,
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',
@@ -45,6 +45,7 @@ app.controller('EducacaoController', function($scope, $http, $document) {
                         $scope.resultado = resultado.data;
                     },
                     function errorCallback(resultado) {
+                        $scope.autorizacao = null
                         $scope.resultado = []
                         console.log(resultado)
                     }
