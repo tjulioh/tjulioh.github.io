@@ -84,18 +84,16 @@
       </div>
    </body>
    <script type="text/javascript" src="app/app.js"></script>
-   <script type="text/javascript" src="app/controller/EducacaoController.js"></script>
    <script type="text/javascript" src="app/controller/InicioController.js"></script>
-   <script>
+   <script type="text/javascript" src="app/controller/EducacaoController.js"></script>
+   <script type='text/javascript'>
       window.onload = function() {
          if(/(#!\/)(?!.)/g.test(window.location.href)){
-            dica = new bootstrap.Tooltip(document.getElementById('dica'))
-            dica.show()
+            new bootstrap.Tooltip(document.getElementById('dica')).show()
          }
       };
       window.onhashchange = function() {
-         dica = bootstrap.Tooltip.getInstance(document.getElementById('dica'))
-         dica.hide()
+         bootstrap.Tooltip.getInstance(document.getElementById('dica')).hide()
       }
    </script>
 </html>
