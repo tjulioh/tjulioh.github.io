@@ -1,2 +1,2 @@
-# tjulioh.github.io
+# tjulioh.dev
 Portfólio de Thiago Julio
